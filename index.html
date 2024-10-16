@@ -1,7 +1,86 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio entre pantallas en Android Studio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-left: 4px solid #333;
+            overflow-x: auto;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <h1>Cambio entre pantallas en Android Studio</h1>
+
+    <p>En Android Studio, el cambio entre pantallas (o actividades) se realiza utilizando la clase <code>Intent</code>. Un <code>Intent</code> es un objeto que permite la comunicación entre diferentes componentes de una aplicación, como actividades. Para realizar el cambio de una actividad a otra, debes seguir estos pasos:</p>
+
+    <h2>Paso 1: Crear las actividades</h2>
+    <p>Si aún no tienes las actividades creadas, puedes agregar una nueva actividad en Android Studio:</p>
+    <ol>
+        <li>Haz clic derecho sobre el paquete de tu proyecto en el explorador de proyectos.</li>
+        <li>Selecciona <strong>New &gt; Activity &gt; Empty Activity</strong>.</li>
+        <li>Dale un nombre a la nueva actividad (por ejemplo, <code>SecondActivity</code>).</li>
+    </ol>
+
+    <h2>Paso 2: Configurar el Intent para el cambio de pantalla</h2>
+    <p>En la actividad actual desde la que quieres cambiar de pantalla, utiliza el siguiente código para iniciar la nueva actividad con un <code>Intent</code>.</p>
+
+    <pre><code>// Dentro de un evento, por ejemplo, al presionar un botón
+Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+startActivity(intent);</code></pre>
+
+    <p>Este código crea un <code>Intent</code> que especifica que quieres cambiar de <code>MainActivity</code> a <code>SecondActivity</code> y luego se llama al método <code>startActivity()</code> para iniciar la nueva pantalla.</p>
+
+    <h2>Paso 3: Configurar la interfaz de usuario</h2>
+    <p>Asegúrate de tener un botón u otro elemento que inicie el cambio de actividad. En el archivo <code>activity_main.xml</code>, agrega un botón:</p>
+
+    <pre><code>&lt;Button
+    android:id="@+id/btnChangeScreen"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cambiar Pantalla" /&gt;</code></pre>
+
+    <p>En el código de la actividad, configura un <code>OnClickListener</code> para ese botón:</p>
+
+    <pre><code>Button btnChangeScreen = findViewById(R.id.btnChangeScreen);
+btnChangeScreen.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        startActivity(intent);
+    }
+});</code></pre>
+
+    <h2>Paso 4: Declarar la segunda actividad en el archivo <code>AndroidManifest.xml</code></h2>
+    <p>Cuando creas una nueva actividad, Android Studio debería agregarla automáticamente al archivo <code>AndroidManifest.xml</code>. Asegúrate de que el archivo tenga algo como esto:</p>
+
+    <pre><code>&lt;activity android:name=".SecondActivity" /&gt;</code></pre>
+
+    <h2>Resumen</h2>
+    <ol>
+        <li>Crea las actividades necesarias.</li>
+        <li>Usa <code>Intent</code> para cambiar de una actividad a otra.</li>
+        <li>Configura un evento (como un botón) para ejecutar el cambio.</li>
+        <li>Declara todas las actividades en el <code>AndroidManifest.xml</code>.</li>
+    </ol>
+
+    <p>¡Y eso es todo! Con estos pasos, lograrás cambiar de pantalla en tu aplicación Android.</p>
 </body>
 </html>
